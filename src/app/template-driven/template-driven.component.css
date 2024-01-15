@@ -1,0 +1,12 @@
+/* styles.scss */
+form{
+    margin:50px;
+    margin-left: 350px;
+    margin-right: 350px;
+    border: 2px solid gray;
+    border-radius: 20px;
+    padding: 20px;
+}
+#center{
+    text-align: center;
+}

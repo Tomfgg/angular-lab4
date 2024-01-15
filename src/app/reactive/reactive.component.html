@@ -1,0 +1,55 @@
+<form [formGroup]="register" (ngSubmit)="log()">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">name</label>
+        <input type="text" class="form-control" formControlName="name" id="exampleInprutEmail1" aria-describedby="emailHelp">
+        @if(register.controls['name'].invalid && register.controls['name'].touched){
+        <div class="text-danger">
+            @if(register.controls['name'].errors?.['required']) {<span>this field is required</span>}
+        </div>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">email</label>
+        <input type="email" formControlName="email" class="form-control" id="exampleIntpdutfPassword1">
+        @if(register.controls['email'].invalid && register.controls['email'].touched){
+            <div class="text-danger">
+                @if(register.controls['email'].errors?.['required']) {<span>this field is required</span>}
+            </div>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">user name</label>
+        <input type="text" class="form-control" formControlName="username" id="exampleInputEmdmail1" aria-describedby="emailHelp">
+        @if(register.controls['username'].invalid && register.controls['username'].touched){
+            <div class="text-danger">
+                @if(register.controls['username'].errors?.['required']) {<span>this field is required</span>}
+                @if(register.controls['username'].errors?.['space']) {<span>username should contain no spaces</span>}
+            </div>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">password</label>
+        <input type="password" class="form-control" formControlName="password" id="exampleIdnpnutEmail1" aria-describedby="emailHelp">
+        @if(register.controls['password'].invalid && register.controls['password'].touched){
+        <div class="text-danger">
+            @if(register.controls['password'].errors?.['required']) {<span>this field is required</span>}
+            @if(register.controls['password'].errors?.['minlength']) {<span>this field should contain 8 characters at least</span>}
+            @if(register.controls['password'].errors?.['noLowerCase']&&!register.controls['password'].errors?.['minlength']&&!register.controls['password'].errors?.['required']) {<span>this field should contain at least one lower case</span>}
+            @if(register.controls['password'].errors?.['noUpperCase']&&!register.controls['password'].errors?.['minlength']&&!register.controls['password'].errors?.['required']&&!register.controls['password'].errors?.['noLowerCase']) {<span>this field should contain at least one upper case</span>}
+            @if(register.controls['password'].errors?.['noDigit']&&!register.controls['password'].errors?.['minlength']&&!register.controls['password'].errors?.['required']&&!register.controls['password'].errors?.['noLowerCase']&&!register.controls['password'].errors?.['noUpperCase']) {<span>this field should contain at least one digit</span>}
+            @if(register.controls['password'].errors?.['noSpecial']&&!register.controls['password'].errors?.['minlength']&&!register.controls['password'].errors?.['required']&&!register.controls['password'].errors?.['noLowerCase']&&!register.controls['password'].errors?.['noUpperCase']&&!register.controls['password'].errors?.['noDigit']) {<span>this field should contain at least one special character</span>}
+        </div>
+    }
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">confirm password</label>
+        <input type="password" class="form-control" formControlName="confirm" id="exampleInpbutEmail1" aria-describedby="emailHelp">
+        <div class="text-danger">
+        @if(register.errors?.['notMatch']&&register.controls['confirm'].touched) {<span>passwords do not match</span>}
+        </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary" [disabled]="register.invalid">register</button>
+    <div id="center">already registered ? <a routerLink="../login">login</a></div>
+
+</form>

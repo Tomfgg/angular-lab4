@@ -1,0 +1,18 @@
+<form #myform="ngForm" (ngSubmit)="takeit(myform)">
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" #myemail="ngModel" name="email" ngModel required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        @if(myemail.invalid && myemail.touched){
+            <p class="text-danger">email required</p>
+        }
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" #mypassword="ngModel" class="form-control" required name="password" ngModel id="exampleInputPassword1">
+        @if(mypassword.invalid && mypassword.touched){
+        <p class="text-danger">password required</p>
+        }
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="myform.invalid">Submit</button>
+    <div id="center">don't have account ? <a routerLink="../register">register</a></div>
+</form>
